@@ -1,0 +1,38 @@
+* Full Adder using predefined gates
+
+.include ../processo.txt
+.include ../gates/AND.txt
+.include ../gates/NOR.txt
+.include ../gates/OR.txt
+.include ../gates/XOR.txt
+
+* Full Adder subcircuit
+.subckt full_adder a b cin sum cout
+
+* Internal signals
+nodes x1 x2 x3 x4 x5
+
+* Sum calculation
+XOR1 a b x1
+XOR2 x1 cin sum
+
+* Carry calculation
+AND1 a b x2
+AND2 x1 cin x3
+OR1 x2 x3 cout
+
+.ends full_adder
+
+* Testbench for Full Adder
+vdc v 0 dc 3.3
+va a 0 pulse (0 3.3 0 0.1n 0.2n 6n 12n)
+vb b 0 pulse (0 3.3 0 0.1n 0.2n 8n 16n)
+vcin cin 0 dc 0
+
+x1 a b cin sum cout full_adder
+
+.control
+tran 1p 100n
+plot v(a) v(b) v(cin) v(sum) v(cout)
+.endcontrol
+.end

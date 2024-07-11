@@ -1,0 +1,16 @@
+************************************************
+* Microeletronica - UNISC
+* Prof. Marco A. B. Hennes
+* CMOS 0.18um
+* VDD = 3.3V
+* Lmin = 180nm
+* Wmin = 300nm
+************************************************
+.include ../processo.txt
+
+.subckt NOR a b out
+M1 vdd a s vdd pmos(W=300n L=180n)
+M2 s b y vdd pmos(W=300n L=180n)
+M3 y a 0 0 nmos(W=300n L=180n)
+M4 y b 0 0 nmos(W=300n L=180n)
+.ends NOR

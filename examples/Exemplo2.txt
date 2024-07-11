@@ -1,0 +1,27 @@
+************************************************
+* Microeletronica - UNISC		       
+* Prof. Marco A. B. Hennes		        
+* CMOS 0.18um                                   
+* VDD = 3.3V
+* Lmin = 180nm
+* Wmin = 300nm
+************************************************
+.include processo.txt
+*   D G S B TIPO W L
+M1 Vdd A Y Vdd pmos(w=600n L=180n)
+M2 0 A Y 0 nmos (w=300n L=180n)
+*carga
+M3 Vdd Y W Vdd pmos(w=600n L=180n)
+M4 0 Y W 0 nmos(w=300n L=180n)
+ 
+
+Va Vdd 0 dc 3.3
+
+V1 A 0 pulse(0 3.3 3n 0.1n 0.1n 2n 4n) 
+.control
+	tran 1p 20n
+	plot V(A) 
+	plot V(Y)
+.endcontrol
+.end
+

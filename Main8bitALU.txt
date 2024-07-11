@@ -1,0 +1,18 @@
+************************************************
+* 8-bit ULA/ALU
+* CMOS 0.18um
+* VDD = 3.3V
+* Lmin = 180nm
+* Wmin = 300nm
+************************************************
+.include processo.txt
+*   D G S B TIPO W L
+M1 Vdd A Y Vdd pmos(w=600n L=180n)
+M2 0 A Y 0 nmos (w=300n L=180n)
+*carga
+M3 Vdd Y W Vdd pmos(w=600n L=180n)
+M4 0 Y W 0 nmos(w=300n L=180n)
+ 
+
+Va Vdd 0 dc 3.3
+

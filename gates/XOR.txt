@@ -1,0 +1,24 @@
+************************************************
+* Microeletronica - UNISC
+* Prof. Marco A. B. Hennes
+* CMOS 0.18um
+* VDD = 3.3V
+* Lmin = 180nm
+* Wmin = 300nm
+************************************************
+.include ../processo.txt
+
+.subckt XOR a b out
+m1 v a x v  PMOS  (w=600n L=180n)
+m2 x a 0 0  NMOS  (w=300n L=180n)
+m3 v b y v  PMOS  (w=600n L=180n)
+m4 y b 0 0  NMOS  (w=300n L=180n)
+m5 v x h v  PMOS  (w=600n L=180n)
+m6 h b z v  PMOS  (w=600n L=180n)
+m7 v a i v  PMOS  (w=600n L=180n)
+m8 i y z v  PMOS  (w=600n L=180n)
+m9 z x j 0  NMOS  (w=300n L=180n)
+m10 j y 0 0  NMOS  (w=300n L=180n)
+m11 z a m 0  NMOS  (w=300n L=180n)
+m12 m b 0 0  NMOS  (w=300n L=180n)
+.ends XOR

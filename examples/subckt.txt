@@ -1,0 +1,26 @@
+.include processo.txt
+
+vdc v 0 dc 3.3 
+va a 0 pulse (0 3.3 0 0.1n 0.2n 6n 12n)
+vb b 0 pulse (0 3.3 0 0.1n 0.2n 8n 16n)
+
+.subckt nand a b x v 
+m1 v a x v  PMOS  (w=600n L=180n)
+m2 v b x v  PMOS  (w=300n L=180n)
+m3 x a c 0  NMOS  (w=300n L=180n)
+m4 c b 0 0  NMOS  (w=300n L=180n)
+.ends  nand
+
+x1 a b m v nand
+
+.control
+
+plot v(a)
+plot v(b)
+plot v(m)
+
+tran 1p 100n
+
+.endcontrol
+.end
+
